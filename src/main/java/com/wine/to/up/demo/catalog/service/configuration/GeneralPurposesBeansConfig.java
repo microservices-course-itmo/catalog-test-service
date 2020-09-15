@@ -1,4 +1,4 @@
-package com.wine.to.up.test.service.configuration;
+package com.wine.to.up.demo.catalog.service.configuration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.modelmapper.ModelMapper;

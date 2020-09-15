@@ -1,16 +1,9 @@
-package com.wine.to.up.test.service.controller;
+package com.wine.to.up.demo.catalog.service.controller;
 
-import com.wine.to.up.test.service.annotations.InjectEventLogger;
-import com.wine.to.up.test.service.logging.EventLogger;
-import com.wine.to.up.test.service.logging.NotableEvents;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -28,10 +21,6 @@ import java.util.stream.Stream;
 @Slf4j
 @RequiredArgsConstructor
 public class CatalogController {
-
-    @InjectEventLogger
-    @SuppressWarnings("unused")
-    private EventLogger eventLogger;
 
     @GetMapping("/all")
     public List<String> getAllMessages() {
@@ -56,7 +45,7 @@ public class CatalogController {
                     try {
                         return f.get();
                     } catch (InterruptedException | ExecutionException e) {
-                        eventLogger.error(NotableEvents.EXCEPTION, "Error while printing messages ", e);
+                        log.error("Error while sending in Kafka ", e);
                         return 0;
                     }
                 })
